@@ -1,0 +1,29 @@
+{% extends 'base.html' %}
+
+{% block title %}
+Index
+{% endblock %}
+
+{% block content %}
+<div class="container">
+    <div class="row mt-3">
+        {% for product in products %}
+        <div class="col-12 col-md-6 col-lg-4">
+            <div class="card">
+                {% if product.image %}
+                    <img src="{{product.image.url}}" class="card-img-top" alt="{{product.title}}">
+                {% else %}
+                    <img src="..." class="card-img-top" alt="...">
+                {% endif %}
+                <div class="card-body">
+                <a href="{% url 'product_detail' product.category.slug product.slug %}"><h5 class="card-title">{{product.title}}</h5></a>
+                <p class="card-text"><strong>NT$ : {{product.price}}</strong></p>
+                <p class="card-text">{{product.description}}</p>
+                <a href="#" class="btn btn-primary">Go somewhere</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+{% endblock %}
